@@ -2,71 +2,14 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sheet Tabanlı PWA</title>
   <link rel="manifest" href="/manifest.json" />
-  <title>Sheet PWA</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    header {
-      background-color: #222;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 10px;
-      justify-content: center;
-      background: #f5f5f5;
-    }
-    .buttons button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .buttons button:hover {
-      background-color: #0056b3;
-    }
-    .table-container {
-      flex-grow: 1;
-      overflow: auto;
-      padding: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-    }
-    td, th {
-      border: 1px solid #ccc;
-      padding: 10px;
-      cursor: pointer;
-    }
-    td.active-green {
-      background-color: #4caf50;
-      color: white;
-    }
-    td.active-red {
-      background-color: #f44336;
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Google Sheet Tabanlı PWA</h1>
+    <h1>Google Sheet Tabanlı Uygulama</h1>
   </header>
 
   <div class="buttons">
@@ -80,43 +23,6 @@
     </table>
   </div>
 
-  <script>
-    const sheetID = 'SENİN_GOOGLE_SHEET_ID_HERE';
-    const sheetName = 'Sayfa1';
-    const apiKey = 'SENİN_API_KEY_HERE';
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${1orLufqVLD73-JPRvSu1PW4Rjb5mAU67X9uyRYv7WF4o}/values/${Sayfa1}?key=${AIzaSyA47pjFvA9S2D4vq9mKSuvUXyMkWGjPOo0}`;
-
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        const rows = data.values;
-        const tbody = document.querySelector('#sheetTable tbody');
-        tbody.innerHTML = '';
-        rows.forEach((row, rowIndex) => {
-          const tr = document.createElement('tr');
-          row.forEach((cell, colIndex) => {
-            const td = document.createElement('td');
-            td.textContent = cell;
-            td.onclick = () => {
-              if (td.classList.contains('active-green')) {
-                td.classList.remove('active-green');
-                td.classList.add('active-red');
-              } else if (td.classList.contains('active-red')) {
-                td.classList.remove('active-red');
-              } else {
-                td.classList.add('active-green');
-              }
-            };
-            td.contentEditable = true;
-            tr.appendChild(td);
-          });
-          tbody.appendChild(tr);
-        });
-      })
-      .catch(err => {
-        console.error('Google Sheets verisi alınamadı:', err);
-      });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
